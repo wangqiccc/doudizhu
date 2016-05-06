@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>poker</title>
+	<script src="jquery.js"></script>
+  <script src="reg.js"></script>
+  <script src="doudizhu.js"></script>
+	<style>
+        .scene{
+        width:400px;height:400px;
+        background:#23833b;
+        margin:0 auto;
+        position:relative;
+        }
+        .left{
+         width:100px;height:400px;	
+         position: absolute;
+         left:-110px;top:0;
+        }
+        .right{
+         width:100px;height:400px;	
+         position: absolute;
+         right:-110px;top:0;	
+        }
+        .bottom{
+         width:400px;height:150px;
+         position: absolute;
+         left:0;bottom:-160px;	
+        }
+        .container{
+         width:100px;height:150px;border:5px solid #d6c112;
+         border-top: 0;
+         position:absolute;
+         left:0;right:0;top:0;bottom:0;
+         margin:auto;
+        }
+        .btn{
+         width:100px;height:30px;background:gold;
+         text-align: center;line-height: 30px;
+         border-radius: 5px;font-size: 16px;
+         cursor:pointer;
+        }
+        .start{
+         position: absolute;
+         left:0;right:0;margin:auto;
+         bottom:70px;	
+        }
+        .poker{
+          width:100px;height:150px;
+          position: absolute;
+          left:0;top:-150px;
+          font-size:14px;
+          font-family:"微软雅黑";
+          font-weight: bold;
+          opacity:0;
+          border:1px solid #000;
+          box-sizing:border-box;
+          padding-left:3px;
+          border-radius:5px;
+          background:url(backface.png) repeat center;
+          cursor:pointer;
+          text-align: left;
+        }
+        .chupai{
+          margin-top:-30px;
+        }
+        .hongtao{
+        	background:url(hongtao.png) no-repeat center #fff;
+          background-size: contain;
+        }
+        .heitao{
+        	background:url(heitao.png) no-repeat center #fff;
+          background-size: contain;
+        }
+        .meihua{
+          background:url(meihua.png) no-repeat center #fff;
+          background-size: contain;
+        }
+        .fangkuai{
+          background:url(fangkuai.png) no-repeat center #fff;
+          background-size: contain;
+        }
+        .joker{
+        	background:url(jokers.png) no-repeat;
+          background-size: contain;
+        }
+        .JOKER{
+        	background:url(joker.png) no-repeat;
+          background-size: contain;
+        }
+        .toolbar{
+          width:100%;height:30px;position: absolute;
+          bottom:30px;
+          text-align:center;
+        }
+        .dapai,.guo,.pass,.call{
+          display: none;
+        }
+        .holecards{
+         width:150px;
+         height:75px;
+         left:0;top:0;
+         position:absolute;
+         border:1px solid #ccc;
+         border-radius: 5px;
+        }
+        .holecards .poker{
+          float:left;
+          width:50px;
+          height:75px;
+        }
+        .wrong{
+          outline:1px solid red;
+        }
+        .showarea{
+          width:300px;height:150px;position: absolute;
+          left:0;top:0;right:0;bottom:0;
+          margin: auto;
+          text-align: center;
+        }
+        .showarea .poker{
+          display:inline-block;
+        }
+	</style>
+</head>
+<body>
+	<div class="scene">
+		 <div class="left con"></div>
+		 <div class="right con"></div>
+		 <div class="bottom con"></div>
+		 <div class="start btn">发牌</div>
+		 <div class="container"></div>
+     <div class="showarea"></div>
+     <div class="toolbar">
+        <div class="call btn">抢地主</div>
+        <div class="pass btn">不抢</div>
+        <div class="dapai btn">出牌</div>
+        <div class="guo btn">要不起</div>
+     </div>
+	</div>
+  <div class="holecards"></div>
+</body>
+</html>
