@@ -1,4 +1,3 @@
-$(function(){
       //扑克数组
      	var poker=[];
       //花色数组
@@ -7,7 +6,7 @@ $(function(){
      	var numarr=["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
       //权重数组
       var weightarr=[12,13,1,2,3,4,5,6,7,8,9,10,11]
-      // 1.生成一副扑克牌
+      //生成一副扑克牌
      	function createPoker(){
      	   var r=[];
      	   var obj={};
@@ -69,7 +68,8 @@ $(function(){
               	target=$(".bottom");
               	fn={top:285,opacity:0,left:(startLeft+=20*parseInt(index/3))}
               }
-              $(this).delay(index*30)
+              $(this)
+              .delay(index*30)
               .animate(fn,400)
               .queue(function(){
               	if(!target.is(".bottom")){
@@ -159,11 +159,12 @@ $(function(){
              })
              setTimeout(function(){
               order();
-              chupai()
+              chupai();
              },1500)
           })
          }
-      //出牌函数
+/*游戏准备阶段结束 进入出牌阶段*/     
+        //出牌函数
          function chupai(){
            $(".dapai").css("display","inline-block");
               $(".bottom").on("click",".poker",function(e){
@@ -176,9 +177,14 @@ $(function(){
          }
         //打牌函数
         function dapai(){
+          var weight=0;
+          $(".showarea>.poker").each(function(){
+               weight+=$(this).data("msg").n;
+          })
           var arr=$(".chupai").map(function(){
               return $(this).data("msg").n;
           })
+
           if(reg(arr)){
              if(arr.length<=3){
                $(".showarea").empty()
@@ -191,11 +197,55 @@ $(function(){
                   })
                }).removeClass("chupai").removeClass("wrong")
              }
-              order()
+             order()
+             //circle()
+              aidaipai(".right",1000)
+              aidaipai(".left",2000)
           }else{
             $(".chupai").addClass("wrong")
           }
+          
         }
         $(".dapai").on("click",dapai)
-     }) 
-        
+        //选出所有可以出的组合 用于ai出牌
+        function zuhe(pos,num){
+             var arr=$(pos).find(".poker")
+             var obj=[]
+             //选出所有能打的一张牌
+             if(num==1){
+                $(arr).each(function(){
+                  obj.unshift($(this))
+                })
+             }
+             return obj;
+        }      
+        //ai打牌函数
+        function aidaipai(pos,time){
+         setTimeout(function(){
+          var weight=0;
+          $(".showarea>.poker").each(function(){
+               weight+=$(this).data("msg").n;
+          })
+           if($(".showarea").find(".poker").length==1){
+             var obj=zuhe(pos,1);
+             var nowweight=0;
+             var nowindex=0;
+             var flag=true;
+             $(obj).each(function(index,value){
+               nowweight=$(this).data("msg").n;
+               if(nowweight>weight&&flag==true){
+                  flag=false;
+                  nowindex=index;
+               }   
+             })
+             if(flag){
+             }else{
+               $(".showarea").empty()
+  obj[nowindex].appendTo(".showarea").css("position","static").addClass(obj[nowindex].data("msg").h).text(obj[nowindex].data("msg").s)
+      order()
+         }
+         }
+          
+       },time)
+        }    
+     
